@@ -17,9 +17,9 @@
   .overlay.show{display:flex}
   .panel{background:#fffbe8;border:8px solid #ffb300;border-radius:40px;padding:30px 40px;box-shadow:0 14px 0 rgba(0,0,0,.25);text-align:center}
   .row{display:flex;gap:28px;justify-content:center;align-items:center}
-  .vbtn{position:relative;width:300px;height:250px;border-radius:30px;border:7px solid #fff;background:#ffe082;cursor:pointer;box-shadow:0 8px 0 rgba(0,0,0,.25);padding:0;transition:transform .12s}
+  .vbtn{position:relative;width:200px;height:164px;border-radius:30px;border:7px solid #fff;background:#ffe082;cursor:pointer;box-shadow:0 8px 0 rgba(0,0,0,.25);padding:0;transition:transform .12s}
   .vbtn:hover{transform:scale(1.06) rotate(-1deg)}
-  .vbtn canvas{position:static;width:286px;height:236px}
+  .vbtn canvas{position:static;width:186px;height:150px}
   .vbtn .check{position:absolute;right:-18px;top:-18px;width:76px;height:76px;border-radius:50%;background:#2ecc40;color:#fff;font-size:52px;line-height:72px;border:6px solid #fff;display:none}
   .vbtn.done .check{display:block}
   .sw{width:110px;height:110px;border-radius:50%;border:8px solid #fff;cursor:pointer;box-shadow:0 7px 0 rgba(0,0,0,.25);transition:transform .12s}
@@ -29,8 +29,11 @@
   h1{margin:0 0 18px;font-size:58px;color:#e53935;text-shadow:3px 3px 0 #fff}
   #nameInput{font:inherit;font-size:56px;width:520px;text-align:center;border-radius:24px;border:6px solid #ffb300;padding:12px;outline:none}
   .go{font:inherit;font-size:54px;margin-top:24px;padding:12px 50px;border-radius:30px;border:6px solid #fff;background:#2ecc40;color:#fff;cursor:pointer;box-shadow:0 8px 0 rgba(0,0,0,.25)}
-  #endOverlay{background:rgba(255,255,255,.15)}
-  #endTitle{font-size:76px;color:#e53935;text-shadow:4px 4px 0 #fff,-2px -2px 0 #fff;margin:0;line-height:1.1}
+  #endOverlay{background:none;justify-content:flex-start;padding-top:96px}
+  #endOverlay .panel{padding:14px 34px;display:flex;align-items:center;gap:26px;text-align:left}
+  #endOverlay .big{font-size:76px}
+  #endOverlay .go{margin-top:0;font-size:40px;padding:10px 30px}
+  #endTitle{font-size:50px;color:#e53935;text-shadow:4px 4px 0 #fff,-2px -2px 0 #fff;margin:0;line-height:1.1}
   .big{font-size:110px;line-height:1}
 </style>
 </head>
@@ -54,7 +57,7 @@
   <div class="overlay" id="pickOverlay">
     <div class="panel">
       <div class="big" style="font-size:70px;margin-bottom:14px">🔧 👇</div>
-      <div class="row" id="vehRow"></div>
+      <div class="row" id="vehRow" style="gap:20px"></div>
     </div>
   </div>
 
