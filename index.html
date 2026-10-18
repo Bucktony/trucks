@@ -9,7 +9,8 @@
   html,body{margin:0;height:100%;overflow:hidden;background:#3a7d2c;font-family:"Comic Sans MS","Chalkboard SE","Trebuchet MS",system-ui,sans-serif;user-select:none;-webkit-user-select:none;touch-action:none}
   #stage{position:absolute;left:0;top:0;width:1280px;height:800px;transform-origin:0 0}
   canvas{position:absolute;left:0;top:0;width:1280px;height:800px;display:block}
-  .hud{position:absolute;top:8px;display:flex;gap:14px;left:50%;transform:translateX(-50%);z-index:5}
+  .hud{position:absolute;top:8px;display:flex;gap:12px;right:14px;z-index:5}
+  .hbtn{width:64px!important;height:64px!important;font-size:32px!important}
   .hbtn{width:78px;height:78px;border-radius:50%;border:5px solid #fff;background:#ff7a00;font-size:40px;cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;padding:0}
   .hbtn:active{transform:translateY(3px);box-shadow:0 2px 0 rgba(0,0,0,.25)}
   #muteBtn{background:#4a90e2}
@@ -18,6 +19,11 @@
   .panel{background:#fffbe8;border:8px solid #ffb300;border-radius:40px;padding:30px 40px;box-shadow:0 14px 0 rgba(0,0,0,.25);text-align:center}
   .row{display:flex;gap:28px;justify-content:center;align-items:center}
   .vbtn{position:relative;width:200px;height:164px;border-radius:30px;border:7px solid #fff;background:#ffe082;cursor:pointer;box-shadow:0 8px 0 rgba(0,0,0,.25);padding:0;transition:transform .12s}
+  .vbtn .needArrow{position:absolute;left:50%;top:-74px;transform:translateX(-50%);font-size:56px;display:none;animation:bob .7s ease-in-out infinite alternate}
+  .vbtn.need{border-color:#ffeb3b;box-shadow:0 0 0 8px #ffeb3b,0 0 40px 12px rgba(255,235,59,.9);animation:glow 1s ease-in-out infinite alternate}
+  .vbtn.need .needArrow{display:block}
+  @keyframes bob{from{transform:translate(-50%,0)}to{transform:translate(-50%,-14px)}}
+  @keyframes glow{from{transform:scale(1)}to{transform:scale(1.07)}}
   .vbtn:hover{transform:scale(1.06) rotate(-1deg)}
   .vbtn canvas{position:static;width:186px;height:150px}
   .vbtn .check{position:absolute;right:-18px;top:-18px;width:76px;height:76px;border-radius:50%;background:#2ecc40;color:#fff;font-size:52px;line-height:72px;border:6px solid #fff;display:none}
@@ -31,9 +37,10 @@
   .go{font:inherit;font-size:54px;margin-top:24px;padding:12px 50px;border-radius:30px;border:6px solid #fff;background:#2ecc40;color:#fff;cursor:pointer;box-shadow:0 8px 0 rgba(0,0,0,.25)}
   #endOverlay{background:none;justify-content:flex-start;padding-top:96px}
   #endOverlay .panel{padding:14px 34px;display:flex;align-items:center;gap:26px;text-align:left}
-  #endOverlay .big{font-size:76px}
+  #endOverlay .big{font-size:64px;white-space:nowrap}
+  #endOverlay .go{white-space:nowrap}
   #endOverlay .go{margin-top:0;font-size:40px;padding:10px 30px}
-  #endTitle{font-size:50px;color:#e53935;text-shadow:4px 4px 0 #fff,-2px -2px 0 #fff;margin:0;line-height:1.1}
+  #endTitle{white-space:nowrap;font-size:48px;color:#e53935;text-shadow:4px 4px 0 #fff,-2px -2px 0 #fff;margin:0;line-height:1.1}
   .big{font-size:110px;line-height:1}
 </style>
 </head>
@@ -45,18 +52,22 @@
     <button class="hbtn" id="muteBtn" title="Sound on/off">🎵</button>
   </div>
 
-  <div class="overlay" id="nameOverlay">
+  <div class="overlay show" id="splash">
     <div class="panel">
-      <div class="big">🚚👷</div>
-      <h1>What's your name?</h1>
-      <input id="nameInput" maxlength="16" autocomplete="off" spellcheck="false">
-      <br><button class="go" id="nameGo">Let's go! ▶</button>
+      <div class="big">🚚🏗️🚜</div>
+      <h1 id="hello"></h1>
+      <div id="nameBox">
+        <h1>What's your name?</h1>
+        <input id="nameInput" maxlength="16" autocomplete="off" spellcheck="false">
+      </div>
+      <button class="go" id="startBtn">▶ Click to start!</button>
+      <br><button class="go" id="newBtn" style="background:#1e88e5;font-size:36px;display:none">🆕 Build a new tower</button>
     </div>
   </div>
 
   <div class="overlay" id="pickOverlay">
     <div class="panel">
-      <div class="big" style="font-size:70px;margin-bottom:14px">🔧 👇</div>
+      <div class="big" style="font-size:60px;margin-bottom:70px">🔧</div>
       <div class="row" id="vehRow" style="gap:20px"></div>
     </div>
   </div>
@@ -73,7 +84,7 @@
     <div class="panel" style="background:rgba(255,251,232,.94)">
       <div class="big">🏆🚧🎉</div>
       <h2 id="endTitle">You built it!</h2>
-      <button class="go" id="againBtn">🔁 Build again</button>
+      <button class="go" id="againBtn">🆕 Build a new tower</button>
     </div>
   </div>
 </div>
